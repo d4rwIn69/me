@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamey Ecuador</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="heart-beating"></div>
+
+        <section id="page1" class="page active">
+            <h1 class="title">Regalos Personalizados</h1>
+            <p class="tagline">Regala algo que no se marchita</p>
+        </section>
+
+        <section id="page2" class="page">
+            <div class="brush-title">
+                <h2 class="tagline-small">¿Cómo hacer pedido?</h2>
+            </div>
+            <ul class="steps-list">
+                <li><span class="flower">🌸</span> Elige tu modelo del catálogo</li>
+                <li><span class="flower">🌸</span> Escoge las flores que deseas en tu arreglo</li>
+                <li><span class="flower">🌸</span> Personaliza tu arreglo (opcional)</li>
+                <li><span class="flower">🌸</span> Confirma tu pedido (50% anticipo)</li>
+                <li><span class="flower">🌸</span> Indica la fecha de entrega</li>
+            </ul>
+        </section>
+
+        <section id="page3" class="page">
+            <p class="catalog-tagline">Pequeños detalles grandes emociones</p>
+            <div class="catalog-grid">
+                <div class="product-card">
+                    <span class="price">$2</span>
+                    <div class="img-container">
+                        <img src="flor1.jpeg" alt="Flor individual">
+                        <ul class="badge-list list-right">
+                            <li>Gerberas</li><li>Tulipanes</li><li>Girasoles</li><li>Lirios</li>
+                        </ul>
+                    </div>
+                    <p class="prod-name">Flor eterna individual</p>
+                </div>
+                <div class="product-card">
+                    <span class="price">$3</span>
+                    <div class="img-container">
+                        <img src="flor2.jpeg" alt="Flor temática">
+                        <ul class="badge-list list-left">
+                            <li>Vaquita</li><li>Capibara</li><li>Oveja</li>
+                        </ul>
+                    </div>
+                    <p class="prod-name">Flor eterna temática</p>
+                </div>
+            </div>
+        </section>
+
+        <nav class="navigation">
+            <button class="btn-shine" onclick="showPage('page1')">Inicio</button>
+            <button class="btn-shine" onclick="showPage('page2')">Pasos</button>
+            <button class="btn-shine" onclick="showPage('page3')">Catálogo</button>
+        </nav>
+
+        <footer class="footer">
+            <p class="instagram">@mamey.ecuador</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

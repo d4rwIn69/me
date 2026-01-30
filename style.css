@@ -1,0 +1,150 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { 
+    width: 100%; height: 100%; overflow: hidden; 
+    font-family: 'Montserrat', sans-serif; 
+    background-color: #ffdce4; 
+}
+
+.container {
+    width: 100vw; height: 100vh; background-color: #ffeef2;
+    position: relative; display: flex; flex-direction: column;
+    justify-content: space-between; padding: 20px; z-index: 1;
+}
+
+/* --- PAGINACIÓN Y ESPACIO --- */
+.page { 
+    display: none; 
+    flex: 1; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    width: 100%;
+}
+.page.active { display: flex; animation: fadeIn 0.6s ease-out forwards; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- ESTILOS PÁGINA 1 (INICIO) --- */
+.title { 
+    font-size: 1.8rem; /* Más pequeño */
+    color: #000000; /* Negro */ 
+    margin-bottom: 5px; /* Ajuste el margen */
+}
+.tagline { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 4rem; /* Más grande */
+    color: #880e4f; 
+}
+
+/* --- ESTILOS PÁGINA 2 (PASOS) --- */
+.brush-title { 
+    background: rgba(255, 255, 255, 0.5); 
+    padding: 15px 40px; 
+    border-radius: 50px; 
+    margin-bottom: 30px; 
+}
+.tagline-small { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: #880e4f; }
+
+.steps-list { 
+    list-style: none; 
+    text-align: left; 
+    max-width: 90%; 
+}
+.steps-list li { 
+    font-size: 1.4rem; 
+    color: #880e4f; 
+    margin-bottom: 20px; 
+    font-weight: 600; 
+    display: flex; 
+    align-items: center; 
+}
+.flower { margin-right: 15px; font-size: 1.8rem; }
+
+/* --- PÁGINA 3 (CATÁLOGO) --- */
+.catalog-tagline { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #880e4f; margin-bottom: 20px; }
+.catalog-grid { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; 
+    width: 100%; 
+    overflow-y: auto; 
+    padding-bottom: 20px; 
+}
+.product-card { display: flex; flex-direction: column; align-items: center; position: relative; padding: 10px; }
+.img-container { position: relative; width: 160px; height: 160px; }
+.img-container img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.price { font-size: 2.2rem; font-weight: bold; color: #880e4f; }
+.prod-name { color: #880e4f; font-weight: 600; font-size: 1.1rem; margin-top: 5px; }
+
+.badge-list { position: absolute; background: white; padding: 8px 12px; border-radius: 15px; font-size: 0.8rem; list-style: none; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 5; }
+.list-right { bottom: 0; right: -30px; }
+.list-left { bottom: 0; left: -30px; }
+
+
+/* --- BOTONES CON BRILLO Y HOVER --- */
+.navigation { display: flex; justify-content: center; gap: 10px; padding: 15px 0; }
+.btn-shine {
+    position: relative; background: #ef9a9a; border: 2px solid white;
+    padding: 12px 20px; border-radius: 25px; color: white; font-weight: bold;
+    cursor: pointer; overflow: hidden; transition: all 0.3s ease; 
+}
+.btn-shine::after {
+    content: ''; position: absolute; top: -50%; left: -100%; width: 50%; height: 200%;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.6), transparent);
+    transform: rotate(30deg); animation: shine 4s infinite;
+}
+@keyframes shine { 0% { left: -100%; } 20% { left: 100%; } 100% { left: 100%; } }
+
+.btn-shine:hover {
+    background-color: #880e4f; 
+    transform: scale(1.05); 
+    box-shadow: 0 5px 15px rgba(136, 14, 79, 0.4);
+}
+
+/* --- FONDO Y CORAZONES FLOTANTES --- */
+.heart-beating {
+    position: absolute; top: 50%; left: 50%; width: 300px; height: 300px;
+    background-color: rgba(255, 255, 255, 0.3); z-index: -1;
+    clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+    transform: translate(-50%, -50%) scale(15); animation: heartbeat 2s infinite;
+}
+@keyframes heartbeat { 0%, 100% { transform: translate(-50%, -50%) scale(15); } 50% { transform: translate(-50%, -50%) scale(16); } }
+
+.instagram { color: #ef9a9a; font-weight: bold; text-align: center; }
+
+/* Corazones voladores */
+.heart {
+    position: absolute; 
+    background-color: #ff85a2;
+    clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+    animation: flyUp 5s linear forwards; z-index: 5; opacity: 0.8;
+    opacity: 0.7; 
+    z-index: 10; /* Asegura que estén por encima del contenido principal, pero debajo de los botones */
+    pointer-events: none; /* Permite hacer clic a través de los corazones */
+}
+@keyframes flyUp {
+
+    0% { transform: translateY(110vh) scale(0); opacity: 0; }
+
+    20% { opacity: 0.8; }
+
+    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+
+}   
+/* Corazones Flotantes Dinámicos */
+
+.heart {
+
+    position: absolute; background-color: #ff85a2;
+
+    clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+
+    animation: flyUp 5s linear forwards; z-index: 5; opacity: 0.8;
+
+}
+
