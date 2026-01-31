@@ -3,240 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mamey Ecuador</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Mamey Ecuador | Detalles Eternos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { width: 100%; height: 100%; overflow: hidden; font-family: 'Montserrat', sans-serif; background-color: #ffdce4; }
+        :root {
+            --primary: #880e4f;
+            --secondary: #ef9a9a;
+            --bg-soft: #fff5f7;
+            --glass: rgba(255, 255, 255, 0.7);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
 
-        .container {
-            width: 100vw; height: 100vh; background-color: #ffeef2;
-            position: relative; display: flex; flex-direction: column;
-            justify-content: space-between; padding: 15px; z-index: 1;
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body, html { 
+            width: 100%; height: 100%; 
             overflow: hidden; 
+            font-family: 'Montserrat', sans-serif; 
+            background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
+            color: #333;
         }
 
-        /* BOTÓN REDES SOCIALES - PEQUEÑO Y A LA DERECHA */
-        .btn-top-right {
-            position: absolute; top: 15px; right: 15px; z-index: 2000;
-        }
-        .btn-small {
-            padding: 6px 12px !important;
-            font-size: 0.7rem !important;
-            border-radius: 15px !important;
-        }
-
-        @keyframes jumpDynamic {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-12px) scale(1.05); }
+        /* Contenedor Principal */
+        .container {
+            width: 100vw; height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: space-between; 
+            padding: 20px; 
+            position: relative; z-index: 10;
         }
 
-        .page { display: none; flex: 1; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; z-index: 2; }
-        .page.active { display: flex; animation: fadeIn 0.6s ease-out forwards; }
+        /* Corazón de fondo sutil */
+        .heart-bg {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw; height: 80vw;
+            background: radial-gradient(circle, rgba(239,154,154,0.15) 0%, transparent 70%);
+            z-index: -1; animation: pulse 4s infinite ease-in-out;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
 
-        .title { font-size: 1.8rem; color: #000; margin-bottom: 5px; animation: jumpDynamic 3s infinite; }
-        .tagline { font-family: 'Dancing Script', cursive; font-size: 3.8rem; color: #880e4f; animation: jumpDynamic 3s infinite; animation-delay: 0.2s; }
-        .brush-title { background: rgba(255, 255, 255, 0.5); padding: 15px 30px; border-radius: 50px; margin-bottom: 20px; animation: jumpDynamic 3.5s infinite; }
-        .tagline-small { font-family: 'Dancing Script', cursive; font-size: 3rem; color: #880e4f; }
+        /* Páginas */
+        .page { 
+            display: none; flex: 1; flex-direction: column; 
+            align-items: center; justify-content: center; 
+            text-align: center; animation: fadeIn 0.8s ease;
+        }
+        .page.active { display: flex; }
 
-        .steps-list { list-style: none; text-align: left; max-width: 90%; }
-        .steps-list li { font-size: 1.2rem; color: #880e4f; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; }
-        .flower { margin-right: 12px; font-size: 1.5rem; }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(15px); filter: blur(5px); } 
+            to { opacity: 1; transform: translateY(0); filter: blur(0); } 
+        }
 
-        /* CATÁLOGO (PÁGINA 3) */
-        .catalog-tagline { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #880e4f; margin-bottom: 5px; }
-        .catalog-instruction { font-size: 1.1rem; color: #880e4f; margin-bottom: 15px; font-weight: bold; }
+        /* Tipografía */
+        .title { font-size: 1.4rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+        .tagline { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--primary); line-height: 1; }
         
+        /* Catálogo */
         .catalog-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-            width: 100%; max-height: 55vh; overflow-y: auto; padding: 10px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+            width: 100%; max-height: 60vh; overflow-y: auto; padding: 10px 5px;
+            scrollbar-width: none;
         }
+        .catalog-grid::-webkit-scrollbar { display: none; }
+
         .product-card {
-            background: rgba(255, 255, 255, 0.5); border-radius: 20px; padding: 12px;
-            border: 2px solid white; display: flex; flex-direction: column; align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s;
+            background: var(--glass); backdrop-filter: blur(10px);
+            border-radius: 25px; padding: 15px;
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: var(--shadow);
+            transition: 0.3s;
         }
-        .product-card:hover { transform: scale(1.03); background: rgba(255, 255, 255, 0.8); }
-        .img-container { width: 100px; height: 100px; }
-        .img-container img { width: 100%; height: 100%; border-radius: 15px; object-fit: cover; border: 2px solid white; }
-        .price { font-size: 1.5rem; font-weight: bold; color: #880e4f; }
-        .prod-name { font-weight: 700; font-size: 1rem; color: #333; margin: 5px 0; }
-        .prod-details { font-size: 0.75rem; color: #666; font-style: italic; }
+        .product-card:active { transform: scale(0.95); }
 
-        /* REDES SOCIALES - DISEÑO AMPLIO */
-        .full-elegant-card {
-            background: rgba(255, 255, 255, 0.95); width: 95%; max-width: 500px; border-radius: 35px;
-            display: flex; flex-direction: column; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 3px solid white;
-        }
-        .main-logo-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; margin: 0 auto 10px; }
-        .brand-title-big { font-size: 2rem; letter-spacing: 2px; color: #333; text-transform: uppercase; }
-        .brand-subtitle-big { font-size: 0.9rem; color: #ef9a9a; font-weight: bold; margin-bottom: 25px; }
+        .img-container { width: 100%; aspect-ratio: 1/1; margin-bottom: 10px; }
+        .img-container img { width: 100%; height: 100%; border-radius: 18px; object-fit: cover; }
         
-        .elegant-content-wrapper { display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%; gap: 15px; }
-        .social-column { flex: 1.2; display: flex; flex-direction: column; gap: 12px; }
-        .social-item-big { 
-            display: flex; align-items: center; gap: 10px; background: white; padding: 12px; border-radius: 15px; 
-            text-decoration: none; border: 1px solid #ffeef2; transition: 0.3s;
+        .price-badge { 
+            background: var(--primary); color: white; 
+            padding: 4px 12px; border-radius: 20px; 
+            font-size: 0.9rem; font-weight: bold; margin-bottom: 8px; display: inline-block;
         }
-        .social-item-big:hover { background: #fff5f7; transform: scale(1.02); }
-        .social-item-big img { width: 25px; height: 25px; }
-        .social-item-big p { font-size: 0.9rem; font-weight: 700; color: #880e4f; }
+        .prod-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+        .prod-details { font-size: 0.7rem; opacity: 0.7; font-style: italic; line-height: 1.2; }
 
-        .qr-column { flex: 1; display: flex; flex-direction: column; align-items: center; }
-        .qr-phrase { font-family: 'Dancing Script', cursive; font-size: 1.3rem; color: #880e4f; margin-bottom: 8px; }
-        .qr-big-img { width: 130px; height: 130px; border: 2px solid #ef9a9a; border-radius: 15px; }
+        /* Pasos Estilizados */
+        .steps-container { text-align: left; background: var(--glass); padding: 30px; border-radius: 30px; border: 1px solid white; }
+        .step-item { display: flex; align-items: center; margin-bottom: 15px; font-weight: 500; color: var(--primary); }
+        .step-num { 
+            width: 25px; height: 25px; background: var(--secondary); color: white; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            margin-right: 15px; font-size: 0.8rem; 
+        }
 
-        /* NAVEGACIÓN */
-        .navigation { 
-            display: flex; justify-content: center; gap: 6px; 
-            padding: 10px 0 40px 0;
-            z-index: 1000; position: relative; flex-wrap: wrap; 
+        /* Tarjeta de Redes Sociales (Premium) */
+        .social-card {
+            background: white; width: 100%; border-radius: 35px;
+            padding: 30px 20px; box-shadow: var(--shadow);
+            border: 1px solid var(--secondary);
         }
-        .btn-shine {
-            position: relative; background: #ef9a9a; border: 2px solid white;
-            padding: 10px 14px; border-radius: 25px; color: white; font-weight: bold;
-            cursor: pointer; overflow: hidden; transition: all 0.4s ease; font-size: 0.8rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        .social-link {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 15px 20px; margin-bottom: 10px;
+            background: var(--bg-soft); border-radius: 20px;
+            text-decoration: none; color: var(--primary); font-weight: 700;
+            transition: 0.3s;
         }
-        .btn-shine:hover { background: #880e4f; transform: translateY(-3px); }
+        .social-link:hover { background: var(--secondary); color: white; }
 
-        /* CORAZONES ANIMADOS */
-        .heart-beating {
-            position: absolute; top: 50%; left: 50%; width: 300px; height: 300px;
-            background-color: rgba(255, 255, 255, 0.2); z-index: -1;
-            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
-            transform: translate(-50%, -50%) scale(15); animation: heartbeat 2s infinite;
+        /* Navegación */
+        .nav-bar {
+            display: flex; justify-content: center; gap: 8px;
+            padding-bottom: 20px;
         }
-        @keyframes heartbeat { 0%, 100% { transform: translate(-50%, -50%) scale(15); } 50% { transform: translate(-50%, -50%) scale(16); } }
-        
-        .heart {
-            position: absolute; background-color: #ff85a2;
-            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
-            animation: flyUp 5s linear forwards; z-index: 999; opacity: 0.8; pointer-events: none;
+        .nav-btn {
+            background: var(--glass); border: 1px solid white;
+            padding: 12px 18px; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 700; color: var(--primary);
+            cursor: pointer; box-shadow: var(--shadow); transition: 0.3s;
         }
-        @keyframes flyUp { 0% { transform: translateY(105vh) scale(0.5); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translateY(-15vh) scale(1.5); opacity: 0; } }
+        .nav-btn.active { background: var(--primary); color: white; }
+
+        /* Corazones Flotantes */
+        .floating-heart {
+            position: absolute; pointer-events: none;
+            color: var(--secondary); opacity: 0.6;
+            animation: floatUp 6s linear forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
-    <div id="heart-container"></div>
-    
-    <div class="btn-top-right">
-        <button class="btn-shine btn-small" onclick="showPage('page5')">Redes Sociales</button>
-    </div>
+
+    <div class="heart-bg"></div>
+    <div id="particles-container"></div>
 
     <div class="container">
-        <div class="heart-beating"></div>
+        <header style="text-align: right;">
+            <span onclick="showPage('page5')" style="font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; color: var(--primary); cursor: pointer;">CONTACTO</span>
+        </header>
 
         <section id="page1" class="page active">
-            <h1 class="title">Regalos Personalizados</h1>
-            <p class="tagline">Regala algo que no se marchita</p>
+            <h2 class="title">Mamey Ecuador</h2>
+            <h1 class="tagline">Detalles que<br>no se marchitan</h1>
+            <p style="margin-top: 20px; font-size: 0.8rem; letter-spacing: 2px; opacity: 0.6;">HECHO A MANO CON AMOR</p>
         </section>
 
         <section id="page2" class="page">
-            <div class="brush-title"><h2 class="tagline-small">¿Cómo hacer pedido?</h2></div>
-            <ul class="steps-list">
-                <li><span class="flower">🌸</span> Elige tu modelo del catálogo</li>
-                <li><span class="flower">🌸</span> Escoge las flores que deseas</li>
-                <li><span class="flower">🌸</span> Personaliza tu arreglo (opcional)</li>
-                <li><span class="flower">🌸</span> Confirma tu pedido (50% anticipo)</li>
-                <li><span class="flower">🌸</span> Indica la fecha de entrega</li>
-            </ul>
+            <h2 class="title" style="margin-bottom: 20px;">¿Cómo pedir?</h2>
+            <div class="steps-container">
+                <div class="step-item"><div class="step-num">1</div> Elige un modelo del catálogo</div>
+                <div class="step-item"><div class="step-num">2</div> Personaliza colores y flores</div>
+                <div class="step-item"><div class="step-num">3</div> Reserva con el 50% de anticipo</div>
+                <div class="step-item"><div class="step-num">4</div> ¡Recibe y sorprende!</div>
+            </div>
         </section>
 
         <section id="page3" class="page">
-            <p class="catalog-tagline">Pequeños detalles grandes emociones</p>
-            <p class="catalog-instruction">¡Presiona el diseño que quieras para comprarlo!</p>
+            <p class="tagline" style="font-size: 2rem; margin-bottom: 15px;">Nuestro Catálogo</p>
             <div class="catalog-grid">
                 <div class="product-card" onclick="hacerPedido('Flor individual', 2)">
-                    <span class="price">$2</span><div class="img-container"><img src="flor1.jpeg"></div><p class="prod-name">Flor individual</p>
-                    <p class="prod-details">Gerberas, Tulipanes, Girasoles</p>
+                    <div class="img-container"><img src="flor1.jpeg" alt="Flor"></div>
+                    <span class="price-badge">$2.00</span>
+                    <p class="prod-name">Flor Individual</p>
+                    <p class="prod-details">Gerberas o Tulipanes</p>
                 </div>
                 <div class="product-card" onclick="hacerPedido('Flor temática', 3)">
-                    <span class="price">$3</span><div class="img-container"><img src="flor2.jpeg"></div><p class="prod-name">Flor temática</p>
-                    <p class="prod-details">Vaquita, Capibara, Oveja</p>
+                    <div class="img-container"><img src="flor2.jpeg" alt="Temática"></div>
+                    <span class="price-badge">$3.00</span>
+                    <p class="prod-name">Flor Temática</p>
+                    <p class="prod-details">Vaquita o Capibara</p>
                 </div>
-                <div class="product-card" onclick="hacerPedido('Mini maceta', 4)">
-                    <span class="price">$4</span><div class="img-container"><img src="flor3.jpeg"></div><p class="prod-name">Mini maceta</p>
-                    <p class="prod-details">Gerberas, Tulipanes, Girasoles, Lirios</p>
-                </div>
-                <div class="product-card" onclick="hacerPedido('Maceta tejida', 5)">
-                    <span class="price">$5</span><div class="img-container"><img src="flor4.jpeg"></div><p class="prod-name">Maceta tejida</p>
-                    <p class="prod-details">Personalizado</p>
-                </div>
-                <div class="product-card" onclick="hacerPedido('Ramo amor eterno', 6)">
-                    <span class="price">$6</span><div class="img-container"><img src="flor5.jpeg"></div><p class="prod-name">Ramo amor eterno</p>
-                    <p class="prod-details">5 flores a elección + Dedicatoria</p>
-                </div>
-                <div class="product-card" onclick="hacerPedido('Ramo ternura', 8)">
-                    <span class="price">$8</span><div class="img-container"><img src="flor6.jpeg"></div><p class="prod-name">Ramo ternura</p>
-                    <p class="prod-details">7 flores a elección + Dedicatoria</p>
+                <div class="product-card" onclick="hacerPedido('Maceta Tejida', 5)">
+                    <div class="img-container"><img src="flor4.jpeg" alt="Maceta"></div>
+                    <span class="price-badge">$5.00</span>
+                    <p class="prod-name">Maceta Tejida</p>
+                    <p class="prod-details">Diseño personalizado</p>
                 </div>
                 <div class="product-card" onclick="hacerPedido('Ramo Mamey', 12)">
-                    <span class="price">$12</span><div class="img-container"><img src="flor7.jpeg"></div><p class="prod-name">Ramo Mamey</p>
-                    <p class="prod-details">12 flores a elección + Dedicatoria</p>
-                </div>
-                <div class="product-card" onclick="hacerPedido('Ramo infinito', 20)">
-                    <span class="price">$20</span><div class="img-container"><img src="flor8.jpeg"></div><p class="prod-name">Ramo infinito</p>
-                    <p class="prod-details">24 flores a elección + Dedicatoria</p>
+                    <div class="img-container"><img src="flor7.jpeg" alt="Ramo"></div>
+                    <span class="price-badge">$12.00</span>
+                    <p class="prod-name">Ramo Mamey</p>
+                    <p class="prod-details">12 flores + dedicatoria</p>
                 </div>
             </div>
         </section>
 
         <section id="page5" class="page">
-            <div class="full-elegant-card">
-                <img src="logo.png" alt="Logo" class="main-logo-img">
-                <h2 class="brand-title-big">Mamey</h2>
-                <p class="brand-subtitle-big">IMAGINACIÓN Y COLORES</p>
-                <div class="elegant-content-wrapper">
-                    <div class="social-column">
-                        <a href="https://www.instagram.com/mamey0428" target="_blank" class="social-item-big"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png"><p>Instagram</p></a>
-                        <a href="https://www.tiktok.com/@mamey.ecuador" target="_blank" class="social-item-big"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"><p>TikTok</p></a>
-                        <a href="https://wa.me/593959966556" target="_blank" class="social-item-big"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"><p>WhatsApp</p></a>
-                    </div>
-                    <div class="qr-column">
-                        <p class="qr-phrase">¡Eternas como tu amor!</p>
-                        <img src="qr.jpeg" alt="QR" class="qr-big-img">
-                    </div>
+            <div class="social-card">
+                <img src="logo.png" style="width: 70px; border-radius: 50%; margin-bottom: 10px;">
+                <h2 class="title">Conéctate</h2>
+                <div style="margin-top: 20px;">
+                    <a href="https://wa.me/593959966556" class="social-link">WhatsApp <span>→</span></a>
+                    <a href="https://www.instagram.com/mamey0428" class="social-link">Instagram <span>→</span></a>
+                    <a href="https://www.tiktok.com/@mamey.ecuador" class="social-link">TikTok <span>→</span></a>
                 </div>
             </div>
         </section>
 
-        <nav class="navigation">
-            <button class="btn-shine" onclick="showPage('page1')">Inicio</button>
-            <button class="btn-shine" onclick="showPage('page2')">Pasos</button>
-            <button class="btn-shine" onclick="showPage('page3')">Catálogo</button>
-            <button class="btn-shine" onclick="personalizarWhatsApp()">Personalización</button>
+        <nav class="nav-bar">
+            <div class="nav-btn active" onclick="showPage('page1', this)">Inicio</div>
+            <div class="nav-btn" onclick="showPage('page2', this)">Pasos</div>
+            <div class="nav-btn" onclick="showPage('page3', this)">Catálogo</div>
+            <div class="nav-btn" onclick="personalizarWhatsApp()" style="background: var(--secondary); color: white;">Personalizar</div>
         </nav>
     </div>
 
     <script>
-        const WHATSAPP_NUMBER = "593959966556"; 
-        function showPage(pageId) {
+        const WHATSAPP_NUMBER = "593959966556";
+
+        function showPage(pageId, btn) {
+            // Cambiar página
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-        }
-        function hacerPedido(nombre, precio) {
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=¡Hola! Me interesa: *${nombre}* ($${precio})`, '_blank');
-        }
-        function personalizarWhatsApp() {
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=¡Hola! Quiero un diseño personalizado.`, '_blank');
+
+            // Cambiar estado de botón
+            if(btn) {
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
         }
 
-        // FUNCIÓN DE CORAZONES RESTAURADA
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('heart-container');
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.style.left = Math.random() * 100 + "vw";
-                const size = Math.random() * 15 + 10;
-                heart.style.width = size + "px"; heart.style.height = size + "px";
-                container.appendChild(heart);
-                setTimeout(() => heart.remove(), 5000);
-            }, 500);
-        });
+        function hacerPedido(nombre, precio) {
+            const texto = `¡Hola! Me encantó este detalle: *${nombre}* ($${precio}). ¿Cómo podemos coordinar?`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`, '_blank');
+        }
+
+        function personalizarWhatsApp() {
+            const texto = `¡Hola! Quisiera algo único. Me gustaría un diseño personalizado. 🎨`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`, '_blank');
+        }
+
+        // Sistema de partículas (Corazones)
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤';
+            heart.classList.add('floating-heart');
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 10 + 10) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            document.getElementById('particles-container').appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        setInterval(createHeart, 600);
     </script>
 </body>
 </html>
