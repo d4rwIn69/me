@@ -15,6 +15,5 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(heart);
         setTimeout(() => heart.remove(), 6000); 
     }
-    setInterval(createHeart, 300); // Genera un corazón cada 400ms
-
+    setInterval(createHeart, 400); 
 });
