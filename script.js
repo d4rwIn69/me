@@ -1,32 +1,38 @@
-const WHATSAPP_NUMBER = "593959966556"; 
-
-function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const target = document.getElementById(pageId);
-    if(target) target.classList.add('active');
+// Navegación
+function goToPage(pageNum) {
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach(slide => slide.classList.remove('active'));
+    document.getElementById('page' + pageNum).classList.add('active');
 }
 
-function hacerPedido(nombre, precio) {
-    const texto = `¡Hola Mamey Ecuador! Me interesa el producto: *${nombre}* ($${precio}). Quisiera más información para concretar mi pedido.`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`, '_blank');
+// WhatsApp
+function sendWhatsapp(producto) {
+    const phone = "593959966556"; 
+    const message = encodeURIComponent(`🌸 ¡Hola Mamey Ecuador! Me interesa: ${producto}. Me gustaría realizar un pedido.`);
+    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
 }
 
-function personalizarWhatsApp() {
-    const texto = `¡Hola Mamey Ecuador! Me gustaría solicitar un *diseño personalizado*. ¿Podrían ayudarme con el proceso?`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`, '_blank');
+// Control del Panel de Contacto
+function toggleContact() {
+    const overlay = document.getElementById('contactOverlay');
+    overlay.classList.toggle('active');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector('.container');
-    function createHeart() {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 100 + "vw";
-        const size = Math.random() * 20 + 10;
-        heart.style.width = `${size}px`;
-        heart.style.height = `${size}px`;
-        container.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000); 
-    }
-    setInterval(createHeart, 400); 
-});
+// Lluvia de flores 🌸
+function createFlower() {
+    const rainContainer = document.getElementById('flowerRain');
+    if (!rainContainer) return;
+    const flower = document.createElement('div');
+    flower.classList.add('falling-flower');
+    flower.innerHTML = '🌸';
+    flower.style.left = Math.random() * 100 + 'vw';
+    const size = Math.random() * (22 - 12) + 12;
+    flower.style.fontSize = size + 'px';
+    const duration = Math.random() * (7 - 4) + 4;
+    flower.style.animationDuration = duration + 's';
+    flower.style.opacity = Math.random() * (0.7 - 0.3) + 0.3;
+    rainContainer.appendChild(flower);
+    setTimeout(() => { flower.remove(); }, duration * 1000);
+}
+
+setInterval(createFlower, 450);
