@@ -45,7 +45,7 @@
         .steps-list li { font-size: 1.2rem; color: #880e4f; margin-bottom: 15px; font-weight: 600; display: flex; align-items: center; }
         .flower { margin-right: 12px; font-size: 1.5rem; }
 
-        /* CATÁLOGO (PÁGINA 3) - RESTAURADO */
+        /* CATÁLOGO (PÁGINA 3) */
         .catalog-tagline { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #880e4f; margin-bottom: 5px; }
         .catalog-instruction { font-size: 1.1rem; color: #880e4f; margin-bottom: 15px; font-weight: bold; }
         
@@ -65,7 +65,7 @@
         .prod-name { font-weight: 700; font-size: 1rem; color: #333; margin: 5px 0; }
         .prod-details { font-size: 0.75rem; color: #666; font-style: italic; }
 
-        /* REDES SOCIALES - MÁS ESPACIO */
+        /* REDES SOCIALES - DISEÑO AMPLIO */
         .full-elegant-card {
             background: rgba(255, 255, 255, 0.95); width: 95%; max-width: 500px; border-radius: 35px;
             display: flex; flex-direction: column; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 3px solid white;
@@ -102,7 +102,7 @@
         }
         .btn-shine:hover { background: #880e4f; transform: translateY(-3px); }
 
-        /* CORAZONES FONDO */
+        /* CORAZONES ANIMADOS */
         .heart-beating {
             position: absolute; top: 50%; left: 50%; width: 300px; height: 300px;
             background-color: rgba(255, 255, 255, 0.2); z-index: -1;
@@ -110,6 +110,13 @@
             transform: translate(-50%, -50%) scale(15); animation: heartbeat 2s infinite;
         }
         @keyframes heartbeat { 0%, 100% { transform: translate(-50%, -50%) scale(15); } 50% { transform: translate(-50%, -50%) scale(16); } }
+        
+        .heart {
+            position: absolute; background-color: #ff85a2;
+            clip-path: path('M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z');
+            animation: flyUp 5s linear forwards; z-index: 999; opacity: 0.8; pointer-events: none;
+        }
+        @keyframes flyUp { 0% { transform: translateY(105vh) scale(0.5); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translateY(-15vh) scale(1.5); opacity: 0; } }
     </style>
 </head>
 <body>
@@ -128,9 +135,7 @@
         </section>
 
         <section id="page2" class="page">
-            <div class="brush-title">
-                <h2 class="tagline-small">¿Cómo hacer pedido?</h2>
-            </div>
+            <div class="brush-title"><h2 class="tagline-small">¿Cómo hacer pedido?</h2></div>
             <ul class="steps-list">
                 <li><span class="flower">🌸</span> Elige tu modelo del catálogo</li>
                 <li><span class="flower">🌸</span> Escoge las flores que deseas</li>
@@ -145,51 +150,35 @@
             <p class="catalog-instruction">¡Presiona el diseño que quieras para comprarlo!</p>
             <div class="catalog-grid">
                 <div class="product-card" onclick="hacerPedido('Flor individual', 2)">
-                    <span class="price">$2</span>
-                    <div class="img-container"><img src="flor1.jpeg"></div>
-                    <p class="prod-name">Flor individual</p>
+                    <span class="price">$2</span><div class="img-container"><img src="flor1.jpeg"></div><p class="prod-name">Flor individual</p>
                     <p class="prod-details">Gerberas, Tulipanes, Girasoles</p>
                 </div>
                 <div class="product-card" onclick="hacerPedido('Flor temática', 3)">
-                    <span class="price">$3</span>
-                    <div class="img-container"><img src="flor2.jpeg"></div>
-                    <p class="prod-name">Flor temática</p>
+                    <span class="price">$3</span><div class="img-container"><img src="flor2.jpeg"></div><p class="prod-name">Flor temática</p>
                     <p class="prod-details">Vaquita, Capibara, Oveja</p>
                 </div>
                 <div class="product-card" onclick="hacerPedido('Mini maceta', 4)">
-                    <span class="price">$4</span>
-                    <div class="img-container"><img src="flor3.jpeg"></div>
-                    <p class="prod-name">Mini maceta</p>
+                    <span class="price">$4</span><div class="img-container"><img src="flor3.jpeg"></div><p class="prod-name">Mini maceta</p>
                     <p class="prod-details">Gerberas, Tulipanes, Girasoles, Lirios</p>
                 </div>
                 <div class="product-card" onclick="hacerPedido('Maceta tejida', 5)">
-                    <span class="price">$5</span>
-                    <div class="img-container"><img src="flor4.jpeg"></div>
-                    <p class="prod-name">Maceta tejida</p>
+                    <span class="price">$5</span><div class="img-container"><img src="flor4.jpeg"></div><p class="prod-name">Maceta tejida</p>
                     <p class="prod-details">Personalizado</p>
                 </div>
                 <div class="product-card" onclick="hacerPedido('Ramo amor eterno', 6)">
-                    <span class="price">$6</span>
-                    <div class="img-container"><img src="flor5.jpeg"></div>
-                    <p class="prod-name">Ramo amor eterno</p>
+                    <span class="price">$6</span><div class="img-container"><img src="flor5.jpeg"></div><p class="prod-name">Ramo amor eterno</p>
                     <p class="prod-details">5 flores a elección + Dedicatoria</p>
                 </div>
                 <div class="product-card" onclick="hacerPedido('Ramo ternura', 8)">
-                    <span class="price">$8</span>
-                    <div class="img-container"><img src="flor6.jpeg"></div>
-                    <p class="prod-name">Ramo ternura</p>
+                    <span class="price">$8</span><div class="img-container"><img src="flor6.jpeg"></div><p class="prod-name">Ramo ternura</p>
                     <p class="prod-details">7 flores a elección + Dedicatoria</p>
                 </div>
                 <div class="product-card" onclick="hacerPedido('Ramo Mamey', 12)">
-                    <span class="price">$12</span>
-                    <div class="img-container"><img src="flor7.jpeg"></div>
-                    <p class="prod-name">Ramo Mamey</p>
+                    <span class="price">$12</span><div class="img-container"><img src="flor7.jpeg"></div><p class="prod-name">Ramo Mamey</p>
                     <p class="prod-details">12 flores a elección + Dedicatoria</p>
                 </div>
                 <div class="product-card" onclick="hacerPedido('Ramo infinito', 20)">
-                    <span class="price">$20</span>
-                    <div class="img-container"><img src="flor8.jpeg"></div>
-                    <p class="prod-name">Ramo infinito</p>
+                    <span class="price">$20</span><div class="img-container"><img src="flor8.jpeg"></div><p class="prod-name">Ramo infinito</p>
                     <p class="prod-details">24 flores a elección + Dedicatoria</p>
                 </div>
             </div>
@@ -202,18 +191,9 @@
                 <p class="brand-subtitle-big">IMAGINACIÓN Y COLORES</p>
                 <div class="elegant-content-wrapper">
                     <div class="social-column">
-                        <a href="https://www.instagram.com/mamey0428" target="_blank" class="social-item-big">
-                            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png">
-                            <p>Instagram</p>
-                        </a>
-                        <a href="https://www.tiktok.com/@mamey.ecuador" target="_blank" class="social-item-big">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
-                            <p>TikTok</p>
-                        </a>
-                        <a href="https://wa.me/593959966556" target="_blank" class="social-item-big">
-                            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-                            <p>WhatsApp</p>
-                        </a>
+                        <a href="https://www.instagram.com/mamey0428" target="_blank" class="social-item-big"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png"><p>Instagram</p></a>
+                        <a href="https://www.tiktok.com/@mamey.ecuador" target="_blank" class="social-item-big"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"><p>TikTok</p></a>
+                        <a href="https://wa.me/593959966556" target="_blank" class="social-item-big"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"><p>WhatsApp</p></a>
                     </div>
                     <div class="qr-column">
                         <p class="qr-phrase">¡Eternas como tu amor!</p>
@@ -243,6 +223,20 @@
         function personalizarWhatsApp() {
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=¡Hola! Quiero un diseño personalizado.`, '_blank');
         }
+
+        // FUNCIÓN DE CORAZONES RESTAURADA
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('heart-container');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + "vw";
+                const size = Math.random() * 15 + 10;
+                heart.style.width = size + "px"; heart.style.height = size + "px";
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 500);
+        });
     </script>
 </body>
 </html>
