@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="heart-container"></div>
     <div class="container">
         <div class="heart-beating"></div>
 
@@ -32,29 +33,85 @@
         <section id="page3" class="page">
             <p class="catalog-tagline">Pequeños detalles grandes emociones</p>
             <div class="catalog-grid">
-                <div class="product-card">
+                <div class="product-card" onclick="hacerPedido('Flor individual', 2)">
                     <span class="price">$2</span>
-                    <div class="img-container"><img src="flor1.jpeg"></div>
+                    <div class="img-container"><img src="flor1.jpeg" alt="Flor individual"></div>
                     <p class="prod-name">Flor individual</p>
                     <p class="prod-details">Gerberas, Tulipanes, Girasoles</p>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="hacerPedido('Flor temática', 3)">
                     <span class="price">$3</span>
-                    <div class="img-container"><img src="flor2.jpeg"></div>
+                    <div class="img-container"><img src="flor2.jpeg" alt="Flor temática"></div>
                     <p class="prod-name">Flor temática</p>
                     <p class="prod-details">Vaquita, Capibara, Oveja</p>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="hacerPedido('Mini maceta', 4)">
                     <span class="price">$4</span>
-                    <div class="img-container"><img src="flor3.jpeg"></div>
+                    <div class="img-container"><img src="flor3.jpeg" alt="Mini maceta"></div>
                     <p class="prod-name">Mini maceta</p>
-                    <p class="prod-details">Girasoles y Margaritas</p>
+                    <p class="prod-details">Gerberas, Tulipanes, Girasoles, Lirios, Margaritas</p>
                 </div>
-                <div class="product-card">
+                <div class="product-card" onclick="hacerPedido('Mini maceta temática', 5)">
                     <span class="price">$5</span>
-                    <div class="img-container"><img src="flor4.jpeg"></div>
-                    <p class="prod-name">Maceta temática</p>
-                    <p class="prod-details">Stich, Conejo, Oso</p>
+                    <div class="img-container"><img src="flor4.jpeg" alt="Mini maceta temática"></div>
+                    <p class="prod-name">Mini maceta temática</p>
+                    <p class="prod-details">Stich, Conejo, Oso, Corazones</p>
+                </div>
+                <div class="product-card" onclick="hacerPedido('Ramo amor eterno', 6)">
+                    <span class="price">$6</span>
+                    <div class="img-container"><img src="flor5.jpeg" alt="Ramo amor eterno"></div>
+                    <p class="prod-name">Ramo amor eterno</p>
+                    <p class="prod-details">5 flores a elección + Dedicatoria personalizada</p>
+                </div>
+                <div class="product-card" onclick="hacerPedido('Brillo de nuestro amor', 8)">
+                    <span class="price">$8</span>
+                    <div class="img-container"><img src="flor6.jpeg" alt="Brillo de nuestro amor"></div>
+                    <p class="prod-name">Brillo de nuestro amor</p>
+                    <p class="prod-details">13 flores a elección + Dedicatoria + Incluye luces</p>
+                </div>
+                <div class="product-card" onclick="hacerPedido('Ramo ilusión dorada', 25)">
+                    <span class="price">$25</span>
+                    <div class="img-container"><img src="flor7.jpeg" alt="Ramo ilusión dorada"></div>
+                    <p class="prod-name">Ramo ilusión dorada</p>
+                    <p class="prod-details">15 flores a elección + Incluye luces + Dedicatoria</p>
+                </div>
+                <div class="product-card" onclick="hacerPedido('Ramo luxury glow', 30)">
+                    <span class="price">$30</span>
+                    <div class="img-container"><img src="flor8.jpeg" alt="Ramo luxury glow"></div>
+                    <p class="prod-name">Ramo luxury glow</p>
+                    <p class="prod-details">17 flores a elección + Peluche temático</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page5" class="page">
+            <div class="full-elegant-card">
+                <div class="logo-top-area">
+                    <img src="logo.png" alt="Logo" class="main-logo-img">
+                    <h2 class="brand-title-big">Mamey</h2>
+                    <p class="brand-subtitle-big">IMAGINACIÓN Y COLORES</p>
+                </div>
+                <div class="elegant-content-wrapper">
+                    <div class="social-column">
+                        <div class="social-item-big">
+                            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png">
+                            <p>@mamey0428</p>
+                        </div>
+                        <div class="social-item-big">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
+                            <p>@mamey.ecuador</p>
+                        </div>
+                        <div class="social-item-big">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968841.png">
+                            <p>0959966556</p>
+                        </div>
+                    </div>
+                    <div class="qr-column">
+                        <p class="qr-phrase">¡Eternas como tu amor!</p>
+                        <div class="qr-frame-elegant">
+                            <img src="qr.jpeg" alt="QR" class="qr-big-img">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -63,11 +120,9 @@
             <button class="btn-shine" onclick="showPage('page1')">Inicio</button>
             <button class="btn-shine" onclick="showPage('page2')">Pasos</button>
             <button class="btn-shine" onclick="showPage('page3')">Catálogo</button>
+            <button class="btn-shine" onclick="personalizarWhatsApp()">Personalización</button>
+            <button class="btn-shine" onclick="showPage('page5')">Redes Sociales</button>
         </nav>
-
-        <footer class="footer">
-            <p class="instagram">@mamey.ecuador</p>
-        </footer>
     </div>
     <script src="script.js"></script>
 </body>
